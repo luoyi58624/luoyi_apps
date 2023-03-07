@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luoyi_apps/projects/todo/router.dart';
 
-class TodoRootController extends GetxController {
+class RootController extends GetxController {
   final RxInt tabbarIndex = 0.obs; // tabbar激活的索引
 }
 
 class RootPage extends StatelessWidget {
   RootPage({super.key});
 
-  final TodoRootController controller = Get.put(TodoRootController());
+  final RootController controller = Get.put(RootController(), tag: 'todo');
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:luoyi_apps/common/utils/logger.dart';
 
 import 'home.dart';
 import 'tool.dart';
@@ -8,7 +9,6 @@ import 'im.dart';
 import 'user.dart';
 
 class RootController extends GetxController {
-  // tabbar页面
   static final List<Widget> rootPages = <Widget>[
     const HomePage(),
     const ToolPage(),
@@ -16,7 +16,6 @@ class RootController extends GetxController {
     const ImPage(),
     const UserPage(),
   ];
-  // tabbar导航
   static final List<BottomBar> bottomBars = <BottomBar>[
     const BottomBar(0, '首页', Icons.home),
     const BottomBar(1, '工具', Icons.widgets),
@@ -24,7 +23,6 @@ class RootController extends GetxController {
     const BottomBar(3, '消息', Icons.chat),
     const BottomBar(4, '我的', Icons.person),
   ];
-  // 路由key
   static final List<GlobalKey<NavigatorState>> routeKeys =
       List<GlobalKey<NavigatorState>>.generate(
           rootPages.length, (int index) => Get.nestedKey(index + 1)!).toList();
@@ -32,13 +30,16 @@ class RootController extends GetxController {
   final RxInt tabbarIndex = 0.obs; // tabbar激活的索引
 }
 
-class RootPage extends StatelessWidget {
-  RootPage({super.key});
+class RootPage extends GetView<RootController> {
+  const RootPage({super.key});
 
-  final RootController controller = Get.put(RootController());
+  @override
+  // ignore: overridden_fields
+  final String tag = "app";
 
   @override
   Widget build(BuildContext context) {
+    logger.i('app page已加载');
     return Scaffold(
       body: buildBody(),
       bottomNavigationBar: buildMaterial2Tabbar(),

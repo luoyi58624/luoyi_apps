@@ -1,33 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:luoyi_apps/model/common.dart';
 
-import 'demo/flutter/index.dart';
-import 'demo/getx/index.dart';
-import 'index.dart';
+import '../../../../model/common.dart';
+import 'feed_back.dart';
+import 'get_storage.dart';
 
-class DemoTab extends StatelessWidget {
-  DemoTab({super.key});
+class GetxTestPage extends StatelessWidget {
+  GetxTestPage({super.key});
 
   final List<CellModel> cellNames = [
-    CellModel('Flutter测试', const FlutterTestPage()),
-    CellModel('Getx测试', const GetxTestPage()),
+    CellModel('FeedBack反馈组件', const FeedBackPage()),
+    CellModel('GetStorage测试', GetStoragePage()),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Navigator(
-      key: RootController.routeKeys[1],
-      reportsRouteUpdateToEngine: true,
-      initialRoute: '/',
-      onGenerateRoute: (settings) => GetPageRoute(page: () => buildPage()),
-    );
-  }
-
-  Widget buildPage() {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('我的'),
+        title: const Text('Getx测试'),
       ),
       body: buildCell(),
     );
@@ -37,7 +27,7 @@ class DemoTab extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8.0),
       child: Material(
-        elevation: 4,
+        elevation: 2,
         child: Column(
             mainAxisSize: MainAxisSize.min,
             children: cellNames
@@ -45,7 +35,7 @@ class DemoTab extends StatelessWidget {
                       title: Text(e.name),
                       trailing: const Icon(Icons.keyboard_arrow_right_outlined),
                       onTap: () {
-                        Get.to(e.page, id: 1);
+                        Get.to(e.page);
                       },
                     ))
                 .toList()),

@@ -10,9 +10,10 @@ abstract class AppPages {
   static final pages = [
     GetPage(
       name: AppRoutes.root,
-      page: () {
-        return RootPage();
-      },
+      page: () => const RootPage(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => RootController(), tag: 'app');
+      }),
     ),
   ];
 }
